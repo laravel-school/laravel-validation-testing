@@ -1,4 +1,7 @@
 {
 	"name" : "ls/laravel-validation",
-	"description" : "Its the package for laravel validation test"
+	"description" : "Its the package for laravel validation test",
+	"require": {
+		"rakit/validation": "^1.2"
+	}
 }
