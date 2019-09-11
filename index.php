@@ -1,6 +1,8 @@
 <?php 
 
-// include "vendor/autoload.php";
+require('vendor/autoload.php');
+
+use Rakit\Validation\Validator;
 
 class FormValidation
 {
@@ -16,7 +18,28 @@ class FormValidation
 			'cell' => 'required'
 		];
 
-		var_dump($data);
+		$validator = new Validator;
+
+		// make it
+		$validation = $validator->make($data, [
+		    'name'                  => 'required',
+		    'cell'                 	=> 'required|email'
+		]);
+
+		$validation->validate();
+
+		if ($validation->fails()) {
+	    	// handling errors
+	    	$errors = $validation->errors();
+		    echo "<pre>";
+		    print_r($errors->firstOfAll());
+		    echo "</pre>";
+		    exit;
+		} else {
+			// Success.
+		}
+
+		var_dump($validation->errors());
 	}
 }
 
